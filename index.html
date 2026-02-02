@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Homeroom Home</title>
+<title>Homeroom</title>
 
 <style>
     * {
@@ -19,7 +19,7 @@
     /* ===== TV + SLIDESHOW CONTAINER ===== */
     .slideshow-container {
         width: 100%;
-        max-width: 900px;   /* Safe Canvas width */
+        max-width: 900px;
         margin: 0 auto;
         position: relative;
     }
@@ -32,6 +32,7 @@
         width: 100%;
         height: auto;
         display: block;
+        cursor: pointer;
     }
 
     /* Fade animation */
@@ -47,14 +48,14 @@
     /* ===== THUMBNAILS ===== */
     .thumbnails {
         display: flex;
-        justify-content: space-between; /* forces exact spacing */
+        justify-content: space-between;
         align-items: center;
         max-width: 900px;
         margin: 6px auto 0;
     }
 
     .thumbnails img {
-        width: 78px;   /* tuned for exactly 8 */
+        width: 78px;
         cursor: pointer;
         border: 2px solid transparent;
     }
@@ -84,51 +85,51 @@
     </div>
 
     <div class="mySlides fade">
-        <img src="./images/video.gif" alt="Video">
+        <img src="./images/video.gif" alt="Video" id="videoSlide">
     </div>
 
     <div class="mySlides fade">
-        <a href="https://app.smore.com/n/8g0fm-tvah-announcements" target="_blank">
-            <img src="./images/official.gif" alt="Official Announcements">
+       <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=LUmWRm1kPE2UZWxaNvMaFgoy3fVMDOZPvpOmQOQ7eO5UQTZPWkZQMDFZRFpORktXVUdMSTA5QlZXOS4u" target="_blank">
+        <img src="./images/checkin.gif" alt="Required Checkin Form">
         </a>
     </div>
+
+    <div class="mySlides fade">
+        <a href="https://k12inc.sharepoint.com/:u:/r/sites/CR/TVAH/HS/SitePages/Homeroom-Hub.aspx?csf=1&web=1&e=kpdHl3" target="_blank">
+		<img src="./images/hub.gif" alt="Homeroom Hub">
+		</a>
+	</div>
 
     <div class="mySlides fade">
         <img src="./images/announce.gif" alt="Announcements">
     </div>
 
     <div class="mySlides fade">
-        <img src="./images/daily.gif" alt="Daily">
+        <img src="./images/daily.gif" alt="Daily Homeroom Assignments">
     </div>
 
     <div class="mySlides fade">
-        <img src="./images/agenda.gif" alt="Agenda">
-    </div>
-
-    <div class="mySlides fade">
-        <a href="https://forms.office.com/Pages/ResponsePage.aspx?id=LUmWRm1kPE2UZWxaNvMaFgoy3fVMDOZPvpOmQOQ7eO5UQTZPWkZQMDFZRFpORktXVUdMSTA5QlZXOS4u" target="_blank">
-            <img src="./images/checkin.gif" alt="Check In">
-        </a>
+         <a href="https://tvah.k12.com/academic-calendar/" target="_blank">
+         <img src="./images/calendar.gif" alt="Academic Calendar">
+		 </a>
     </div>
 	
 	<div class="mySlides fade">
-        <a href="https://k12inc.sharepoint.com/:u:/r/sites/CR/TVAH/HS/SitePages/Homeroom-Hub.aspx?csf=1&web=1&e=kpdHl3" target="_blank">
-            <img src="./images/hub.gif" alt="Homeroom Hub">
-		</a>
+         <img src="./images/class.gif" alt="Class of 2025">
     </div>
 
 </div>
 
 <!-- ===== THUMBNAILS (ALWAYS VISIBLE) ===== -->
 <div class="thumbnails">
-    <img src="./images/thumbnails/welcome-thumbnail.gif" onclick="currentSlide(1)">
+    <img src="./images/thumbnails/welcomehr-thumbnail.gif" onclick="currentSlide(1)">
     <img src="./images/thumbnails/video-thumbnail.gif" onclick="currentSlide(2)">
-    <img src="./images/thumbnails/official-thumbnail.gif" onclick="currentSlide(3)">
-    <img src="./images/thumbnails/announce-thumbnail.gif" onclick="currentSlide(4)">
-    <img src="./images/thumbnails/daily-thumbnail.gif" onclick="currentSlide(5)">
-    <img src="./images/thumbnails/agenda-thumbnail.gif" onclick="currentSlide(6)">
-    <img src="./images/thumbnails/checkin-thumbnail.gif" onclick="currentSlide(7)">
-    <img src="./images/thumbnails/hub-thumbnail.gif" onclick="currentSlide(8)">
+    <img src="./images/thumbnails/checkin-thumbnail.gif" onclick="currentSlide(3)">
+    <img src="./images/thumbnails/hub-thumbnail.gif" onclick="currentSlide(4)">
+    <img src="./images/thumbnails/announce-thumbnail.gif" onclick="currentSlide(5)">
+    <img src="./images/thumbnails/daily-thumbnail.gif" onclick="currentSlide(6)">
+    <img src="./images/thumbnails/calendar-thumbnail.gif" onclick="currentSlide(7)">
+    <img src="./images/thumbnails/class-thumbnail.gif" onclick="currentSlide(8)">    
 </div>
 
 <!-- ===== BOBCAT CONTROL (BELOW THUMBNAILS) ===== -->
@@ -183,8 +184,19 @@ function currentSlide(n) {
     }
 }
 
-/* Start immediately – no Canvas delay */
+/* Start immediately */
 startSlideshow();
+
+/* ===== VIDEO POPUP ===== */
+const videoSlide = document.getElementById("videoSlide");
+
+videoSlide.addEventListener("click", () => {
+    window.open(
+        './videos/homeroom.mp4',
+        'videoWindow',
+        'width=640,height=360,resizable=yes'
+    );
+});
 </script>
 
 </body>
