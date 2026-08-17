@@ -5,6 +5,7 @@
 <title>Homeroom</title>
 
 <style>
+
     * {
         box-sizing: border-box;
     }
@@ -16,189 +17,92 @@
         font-family: Arial, sans-serif;
     }
 
-    /* ===== TV + SLIDESHOW CONTAINER ===== */
-    .slideshow-container {
+    /* ===== HOMEROOM WELCOME SCREEN ===== */
+
+    .welcome-container {
         width: 100%;
         max-width: 900px;
         margin: 0 auto;
         position: relative;
     }
 
-    .mySlides {
-        display: none;
-    }
-
-    .mySlides img {
+    .welcome-image {
         width: 100%;
         height: auto;
         display: block;
+    }
+
+
+    /* ===== CIRCULAR TEACHER VIDEO ===== */
+
+    .teacher-video {
+        position: absolute;
+        left: 5%;
+        bottom: 7%;
+        width: 16%;
+        aspect-ratio: 1 / 1;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid #6f2dbd;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.5);
         cursor: pointer;
+        z-index: 10;
     }
 
-    /* Fade animation */
-    .fade {
-        animation: fade 1.5s;
-    }
-
-    @keyframes fade {
-        from { opacity: .4; }
-        to { opacity: 1; }
-    }
-
-    /* ===== THUMBNAILS ===== */
-    .thumbnails {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        max-width: 900px;
-        margin: 6px auto 0;
-    }
-
-    .thumbnails img {
-        width: 78px;
-        cursor: pointer;
-        border: 2px solid transparent;
-    }
-
-    .thumbnails img:hover {
-        border-color: #717171;
-    }
-
-    /* ===== PLAY / PAUSE (BOBCAT) ===== */
-    .controls {
-        margin-top: 4px;
-    }
-
-    .controls img {
-        cursor: pointer;
-    }
 </style>
 </head>
 
+
 <body>
 
-<!-- ===== SLIDESHOW / TV ===== -->
-<div class="slideshow-container">
 
-    <div class="mySlides fade">
-        <img src="./images/welcomehr.gif" alt="Welcome">
-    </div>
+<!-- ===== HOMEROOM WELCOME SCREEN ===== -->
 
-    <div class="mySlides fade">
-        <img src="./images/video.gif" alt="Video" id="videoSlide">
-    </div>
+<div class="welcome-container">
 
-    <div class="mySlides fade">
-       <a href="https://forms.cloud.microsoft/r/J9QhdLmYuS" target="_blank">
-        <img src="./images/checkin.gif" alt="Required Checkin Form">
-        </a>
-    </div>
+    <!-- Your finished Homeroom graphic -->
+    <img
+        src="./images/welcomehr.gif"
+        alt="Welcome to Homeroom"
+        class="welcome-image"
+    >
 
-    <div class="mySlides fade">
-        <a href="https://k12inc.sharepoint.com/:u:/r/sites/CR/TVAH/HS/SitePages/Homeroom-Hub.aspx?csf=1&web=1&e=kpdHl3" target="_blank">
-		<img src="./images/hub.gif" alt="Homeroom Hub">
-		</a>
-	</div>
 
-    <div class="mySlides fade">
-        <img src="./images/announce.gif" alt="Announcements">
-    </div>
-
-    <div class="mySlides fade">
-        <img src="./images/daily.gif" alt="Daily Homeroom Assignments">
-    </div>
-
-    <div class="mySlides fade">
-         <a href="https://tvah.k12.com/academic-calendar/" target="_blank">
-         <img src="./images/calendar.gif" alt="Academic Calendar">
-		 </a>
-    </div>
-	
-	<div class="mySlides fade">
-         <img src="./images/class.gif" alt="Class of 2025">
-    </div>
+    <!-- Circular teacher video -->
+    <video
+        id="teacherVideo"
+        class="teacher-video"
+        src="./videos/homeroom.mp4"
+        playsinline
+        preload="metadata"
+    >
+    </video>
 
 </div>
 
-<!-- ===== THUMBNAILS (ALWAYS VISIBLE) ===== -->
-<div class="thumbnails">
-    <img src="./images/thumbnails/welcomehr-thumbnail.gif" onclick="currentSlide(1)">
-    <img src="./images/thumbnails/video-thumbnail.gif" onclick="currentSlide(2)">
-    <img src="./images/thumbnails/checkin-thumbnail.gif" onclick="currentSlide(3)">
-    <img src="./images/thumbnails/hub-thumbnail.gif" onclick="currentSlide(4)">
-    <img src="./images/thumbnails/announce-thumbnail.gif" onclick="currentSlide(5)">
-    <img src="./images/thumbnails/daily-thumbnail.gif" onclick="currentSlide(6)">
-    <img src="./images/thumbnails/calendar-thumbnail.gif" onclick="currentSlide(7)">
-    <img src="./images/thumbnails/class-thumbnail.gif" onclick="currentSlide(8)">    
-</div>
 
-<!-- ===== BOBCAT CONTROL (BELOW THUMBNAILS) ===== -->
-<div class="controls">
-    <img id="playPlay"
-         src="./images/pause-button.gif"
-         onclick="toggleSlideshow()"
-         title="Play / Pause">
-</div>
+<!-- ===== VIDEO CONTROL ===== -->
 
-<!-- ===== SCRIPT ===== -->
 <script>
-let slideIndex = 0;
-let isPlaying = true;
-let slideInterval;
 
-function showSlides() {
-    let slides = document.getElementsByClassName("mySlides");
-    for (let i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
-    }
+const teacherVideo = document.getElementById("teacherVideo");
 
-    slideIndex++;
-    if (slideIndex > slides.length) {
-        slideIndex = 1;
-    }
+teacherVideo.addEventListener("click", function() {
 
-    slides[slideIndex - 1].style.display = "block";
-}
+    if (teacherVideo.paused) {
 
-function startSlideshow() {
-    showSlides();
-    slideInterval = setInterval(showSlides, 5000);
-}
+        teacherVideo.play();
 
-function toggleSlideshow() {
-    if (isPlaying) {
-        clearInterval(slideInterval);
-        isPlaying = false;
     } else {
-        startSlideshow();
-        isPlaying = true;
+
+        teacherVideo.pause();
+
     }
-}
 
-function currentSlide(n) {
-    slideIndex = n - 1;
-    showSlides();
-    if (isPlaying) {
-        clearInterval(slideInterval);
-        slideInterval = setInterval(showSlides, 5000);
-    }
-}
-
-/* Start immediately */
-startSlideshow();
-
-/* ===== VIDEO POPUP ===== */
-const videoSlide = document.getElementById("videoSlide");
-
-videoSlide.addEventListener("click", () => {
-    window.open(
-        './videos/homeroom.mp4',
-        'videoWindow',
-        'width=640,height=360,resizable=yes'
-    );
 });
+
 </script>
+
 
 </body>
 </html>
-
